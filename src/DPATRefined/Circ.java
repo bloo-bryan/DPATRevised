@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class Circ {
     private Color color = Color.black;
-    private int x, y, x2, y2;
 
     public Circ(Color color) {
         this.color = color;

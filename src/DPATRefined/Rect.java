@@ -4,7 +4,6 @@ import java.awt.*;
 
 public class Rect {
     private Color color = Color.black;
-    private int x, y, x2, y2;
 
     public Rect(Color color) {
         this.color = color;

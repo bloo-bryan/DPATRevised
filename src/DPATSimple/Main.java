@@ -16,11 +16,11 @@ public class Main extends JFrame implements ActionListener {
 
     int winWidth = 1200;
     int winHeight = 700;
-    Color[] shapeColor = {Color.orange, Color.red, Color.yellow,
-            Color.blue, Color.pink, Color.cyan, Color.magenta,
+    Color[] shapeColor = {Color.orange, Color.red, Color.pink, Color.magenta,
+            Color.yellow, Color.blue, Color.cyan,
             Color.black, Color.gray};
     File path = new File(System.getProperty("user.dir"));
-    BufferedImage image = ImageIO.read(new File(path, "zombie.png"));
+    BufferedImage image;
 
     public static void main(String[] args) throws IOException {
         new Main();
@@ -28,7 +28,7 @@ public class Main extends JFrame implements ActionListener {
 
     public Main() throws IOException {
         this.setSize(winWidth,winHeight);
-        this.setTitle("Shape Generator");
+        this.setTitle("Shape and Image Generator");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -47,9 +47,9 @@ public class Main extends JFrame implements ActionListener {
 
     // Picks random x & y coordinates
 
-    private int getRandX(){ return (int)(Math.random()*winWidth); }
+    private int getRandX(){ return (int)(Math.random() * winWidth); }
 
-    private int getRandY(){ return (int)(Math.random()*winHeight); }
+    private int getRandY(){ return (int)(Math.random() * winHeight); }
 
     // Picks a random Color from the 9 available
 
@@ -65,35 +65,25 @@ public class Main extends JFrame implements ActionListener {
             Graphics g = drawPanel.getGraphics();
             long startTime = System.currentTimeMillis();
             for(int i=0; i < 200000; ++i) {
-                // Uses rectangles stored in the HashMap to
-                // speed up the program
-
-//                MyRect rect = RectFactory.getRect(getRandColor());
-//                rect.draw(g, getRandX(), getRandY(),
-//                        getRandX(), getRandY());
                 if(i > 100000) {
                     Circ circ = new Circ(getRandColor(), getRandX(), getRandY(), getRandX(), getRandY());
                     circ.draw(g);
-                    //g.setColor(getRandColor());
-                    //g.drawOval(getRandX(), getRandY(), getRandX(), getRandY());
-                    //g.fillOval(getRandX(), getRandY(), getRandX(), getRandY());
-                } else if(i > 50000) {
+                } else if(i > 80000) {
                     try {
-                        g.drawImage(image, getRandX(), getRandY(), getRandColor(), null);
+                        image = ImageIO.read(new File(path, "zombie.png"));
+                        g.drawImage(image, getRandX(), getRandY(), null);
                     } catch(Exception ex) {
                         System.out.println("Cannot read image");
                     }
                 } else {
                     Rect rect = new Rect(getRandColor(), getRandX(), getRandY(), getRandX(), getRandY());
                     rect.draw(g);
-                    //g.setColor(getRandColor());
-                    //g.fillRect(getRandX(), getRandY(), getRandX(), getRandY());
                 }
 
             }
             long endTime = System.currentTimeMillis();
 
-            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+            System.out.println("Time taken: " + (endTime - startTime) + " milliseconds");
 
         }
     }

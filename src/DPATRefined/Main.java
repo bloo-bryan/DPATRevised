@@ -17,8 +17,8 @@ public class Main extends JFrame implements ActionListener {
 
     int winWidth = 1200;
     int winHeight = 700;
-    Color[] shapeColor = {Color.orange, Color.red, Color.yellow,
-            Color.blue, Color.pink, Color.cyan, Color.magenta,
+    Color[] shapeColor = {Color.orange, Color.red, Color.pink, Color.magenta,
+            Color.yellow, Color.blue, Color.cyan,
             Color.black, Color.gray};
     //File path = new File(System.getProperty("user.dir"));
     //BufferedImage image = ImageIO.read(new File(path, "zombie.png"));
@@ -29,7 +29,7 @@ public class Main extends JFrame implements ActionListener {
 
     public Main() throws IOException {
         this.setSize(winWidth,winHeight);
-        this.setTitle("Shape Generator");
+        this.setTitle("Shape and Image Generator");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -64,9 +64,10 @@ public class Main extends JFrame implements ActionListener {
                 if(i > 100000) {
                     Circ circ = CircleFactory.getCirc(getRandColor());
                     circ.draw(g, getRandX(), getRandY(), getRandX(), getRandY());
-                } else if(i > 50000) {
+                } else if(i > 80000) {
                     try {
-                        image.display(g, getRandX(), getRandY(), getRandColor());
+                        BufferedImage img = image.display();
+                        g.drawImage(img, getRandX(), getRandY(), null);
                     } catch(Exception ex) {
                         System.out.println("Cannot read image");
                     }
@@ -78,7 +79,7 @@ public class Main extends JFrame implements ActionListener {
             }
             long endTime = System.currentTimeMillis();
 
-            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+            System.out.println("Time taken: " + (endTime - startTime) + " milliseconds");
 
         }
     }

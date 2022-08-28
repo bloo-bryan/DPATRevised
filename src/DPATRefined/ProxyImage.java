@@ -1,6 +1,7 @@
 package DPATRefined;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class ProxyImage implements Image {
@@ -12,8 +13,9 @@ public class ProxyImage implements Image {
     }
 
     @Override
-    public void display(Graphics g, int x, int y, Color color) throws IOException {
+    public BufferedImage display() throws IOException {
         if(image == null) image = new RealImage(fileName);
-        image.display(g, x, y, color);
+        //image.display(g, x, y);
+        return image.display();
     }
 }

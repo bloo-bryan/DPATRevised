@@ -20,7 +20,7 @@ public class RealImage implements Image {
         image = ImageIO.read(new File(path, fileName));
     }
 
-    public void display(Graphics g, int x, int y, Color color) {
-        g.drawImage(image, x, y, color, null);
+    public BufferedImage display() {
+        return image;
     }
 }
