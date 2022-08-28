@@ -2,7 +2,7 @@ package DPATRefined;
 
 import java.awt.*;
 
-public class Circ extends ShapeStrategy {
+public class Circ {
     private Color color = Color.black;
     private int x, y, x2, y2;
 

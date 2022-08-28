@@ -2,7 +2,7 @@ package DPATRefined;
 
 import java.awt.*;
 
-public class Rect extends ShapeStrategy {
+public class Rect {
     private Color color = Color.black;
     private int x, y, x2, y2;
 
